@@ -1,0 +1,47 @@
+The mini Project
+--------------------
+Make an application that allows two kinds of users, 
+free and premium, to register. 
+When they log in, give them a list of TV series and movies. 
+
+Allow free users to download only movies, while allowing premium users to download 
+both TV series and movies. 
+
+Show each user his three last-watched videos..
+------------------------------------------------------------------------------------------------------
+
+USERS
+---------------
+id
+username
+password
+enabled
+
+AUTHORITIES
+----------------
+id
+username
+authority
+
+
+USERDETAILS
+---------------
+id
+first_name
+last_name
+email_id
+user_type free or premium
+
+MOVIES
+
+id
+name
+year_of_relase
+description
+genre
+
+TVSERIES
+id
+name
+season
+episode
