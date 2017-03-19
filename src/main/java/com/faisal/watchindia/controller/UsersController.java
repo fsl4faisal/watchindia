@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.faisal.watchindia.constants.Enabled;
+import com.faisal.watchindia.constants.UserType;
 import com.faisal.watchindia.domain.Users;
 import com.faisal.watchindia.service.UsersService;
 
@@ -29,20 +30,19 @@ public class UsersController {
 	@RequestMapping(value={"user/registration"},method=RequestMethod.GET)
 	public String setupForm(Map<String,Object> map){
 		System.out.println("Setting up form in /userRegistration");
-		map.put("user", new Users());
+		map.put("users", new Users());
 		return "userRegistration";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String addUser(@Valid Users user,BindingResult result,SessionStatus status,Map<String,Object> map){
+	public String addUser(@Valid Users users,BindingResult result,SessionStatus status,Map<String,Object> map){
 		if(result.hasErrors()){
 			System.out.println("it had errors"+result.getAllErrors());
-			map.put("user", user);
-			map.put("result", result);
+			map.put("users", users);
 			return "userRegistration";
 		}else{
 			System.out.println("processed successfully");
-			usersService.add(user);
+			usersService.add(users);
 			return "redirect:/index";
 		}	
 	}
@@ -51,5 +51,11 @@ public class UsersController {
 	public Enabled[] getEnabled(){
 		return Enabled.values();
 	}
+	
+	@ModelAttribute("userTypes")
+	public UserType[] getUserTypes(){
+		return UserType.values();
+	}
+	
 	
 }

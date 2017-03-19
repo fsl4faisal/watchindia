@@ -52,7 +52,7 @@
 						<td>${user.lastName}</td>
 						<td>${user.username}</td>
 						<td>${user.emailId}</td>
-						<td>${user.userType}</td>
+						<td>${user.userType.name}</td>
 						<td><a href="#"/>edit</td>
 						<td><a href="#"/>delete</td>
 					</tr>

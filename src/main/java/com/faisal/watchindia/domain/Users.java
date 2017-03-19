@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.faisal.watchindia.constants.Enabled;
+import com.faisal.watchindia.constants.UserType;
 
 @Entity
 @Table(name="USERS")
@@ -34,8 +34,7 @@ public class Users {
 	
 	@Column(name="ENABLED")
 	@NotNull
-	@Enumerated(EnumType.STRING)
-	Enabled enabled;
+	Integer enabled;
 	
 	@Column(name="FIRST_NAME")
 	@NotEmpty
@@ -51,15 +50,15 @@ public class Users {
 	String emailId;
 	
 	@Column(name="USER_TYPE")
-	@NotEmpty
-	String userType;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	UserType userType;
 	
 	public Users(){}
 
-	
 
-	public Users(int userId, String username, String password, Enabled enabled, String firstName, String lastName,
-			String emailId, String userType) {
+	public Users(int userId, String username, String password, Integer enabled, String firstName, String lastName,
+			String emailId, UserType userType) {
 		super();
 		this.userId = userId;
 		this.username = username;
@@ -99,13 +98,13 @@ public class Users {
 
 	
 
-	public Enabled getEnabled() {
+	public Integer getEnabled() {
 		return enabled;
 	}
 
 
 
-	public void setEnabled(Enabled enabled) {
+	public void setEnabled(Integer enabled) {
 		this.enabled = enabled;
 	}
 
@@ -135,11 +134,11 @@ public class Users {
 		this.emailId = emailId;
 	}
 
-	public String getUserType() {
+	public UserType getUserType() {
 		return userType;
 	}
 
-	public void setUserType(String userType) {
+	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
 

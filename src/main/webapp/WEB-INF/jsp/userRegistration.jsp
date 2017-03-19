@@ -24,7 +24,7 @@
 
 </head>
 <body>
-	<form:form method="POST" modelAttribute="user">
+	<form:form method="POST" modelAttribute="users">
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 			<tr>
@@ -59,7 +59,12 @@
 
 			<tr>
 				<th>User Type</th>
-				<td><form:input path="userType" /></td>
+				<td><form:select path="userType">
+						<option disabled selected></option>
+						<c:forEach items="${userTypes}" var="userType">
+							<option value="${userType}">${userType.name}</option>
+						</c:forEach>
+					</form:select></td>
 				<td><form:errors path="userType" cssClass="error" /></td>
 			</tr>
 
@@ -68,14 +73,13 @@
 				<td><form:select path="enabled">
 						<option disabled selected></option>
 						<c:forEach items="${enabledList}" var="enabledStatus">
-							<option value="${enabledStatus}">${enabledStatus.name}</option>
+							<option value="${enabledStatus.value}">${enabledStatus.name}</option>
 						</c:forEach>
 					</form:select></td>
 				<td><form:errors path="enabled" cssClass="error" /></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
-				<input type="submit"
+				<td colspan="2" align="center"><input type="submit"
 					value="Submit" /></td>
 
 			</tr>
