@@ -30,6 +30,17 @@ public class TvSeries {
 	
 	public TvSeries(){}
 
+	public TvSeries(int id, String name, int season, int episode, String description) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.season = season;
+		this.episode = episode;
+		this.description = description;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}

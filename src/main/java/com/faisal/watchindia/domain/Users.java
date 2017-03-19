@@ -2,10 +2,18 @@ package com.faisal.watchindia.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.faisal.watchindia.constants.Enabled;
 
 @Entity
 @Table(name="USERS")
@@ -16,36 +24,62 @@ public class Users {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int userId;
 	
-	@Column(name="USER_NAME")
+	@Column(name="USERNAME")
+	@NotEmpty(message="username can not be empty")
 	String username;
 	
 	@Column(name="PASSWORD")
+	@NotEmpty
 	String password;
 	
 	@Column(name="ENABLED")
-	int enabled;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	Enabled enabled;
+	
+	@Column(name="FIRST_NAME")
+	@NotEmpty
+	String firstName;
+	
+	@Column(name="LAST_NAME")
+	@NotEmpty
+	String lastName;
+	
+	@Column(name="EMAIL_ID")
+	@NotEmpty
+	@Pattern(regexp=".+@.+\\.[a-z]+")
+	String emailId;
+	
+	@Column(name="USER_TYPE")
+	@NotEmpty
+	String userType;
 	
 	public Users(){}
 
+	
 
-	public Users(int userId, String username, String password, int enabled) {
+	public Users(int userId, String username, String password, Enabled enabled, String firstName, String lastName,
+			String emailId, String userType) {
 		super();
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailId = emailId;
+		this.userType = userType;
 	}
+
 
 
 	public int getUserId() {
 		return userId;
 	}
 
-
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-
 
 	public String getUsername() {
 		return username;
@@ -63,13 +97,53 @@ public class Users {
 		this.password = password;
 	}
 
-	public int getEnabled() {
+	
+
+	public Enabled getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(int enabled) {
+
+
+	public void setEnabled(Enabled enabled) {
 		this.enabled = enabled;
 	}
+
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+
 	
 	
 	

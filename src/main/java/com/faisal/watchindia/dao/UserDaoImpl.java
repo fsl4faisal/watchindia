@@ -6,38 +6,38 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.faisal.watchindia.domain.UserDetails;
+import com.faisal.watchindia.domain.Users;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl implements UsersDao {
 	
 	@Autowired
 	private SessionFactory session;
 	@Override
-	public void add(UserDetails user) {
+	public void add(Users user) {
 		session.getCurrentSession().save(user);
 	}
 
 	@Override
-	public void edit(UserDetails user) {
+	public void edit(Users user) {
 		session.getCurrentSession().update(user);
 		
 	}
 
 	@Override
-	public void delete(int userId) {
-		session.getCurrentSession().delete(getUserDetails(userId));
+	public void delete(int id) {
+		session.getCurrentSession().delete(getUserDetails(id));
 		
 	}
 
 	@Override
-	public UserDetails getUserDetails(int userId) {
-		return (UserDetails)session.getCurrentSession().get(UserDetails.class, userId);
+	public Users getUserDetails(int id) {
+		return (Users)session.getCurrentSession().get(Users.class, id);
 	}
 
 	@Override
 	public List getAllUsers() {
-		return session.getCurrentSession().createQuery("from UserDetails").list();
+		return session.getCurrentSession().createQuery("from Users").list();
 	}
 
 }

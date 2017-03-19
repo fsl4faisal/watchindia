@@ -6,49 +6,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.faisal.watchindia.dao.UserDao;
-import com.faisal.watchindia.domain.UserDetails;
+import com.faisal.watchindia.dao.UsersDao;
+import com.faisal.watchindia.domain.Users;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UsersServiceImpl implements UsersService {
 	
 	@Autowired
-	private UserDao userDao;
+	private UsersDao usersDao;
 	
 	@Override
 	@Transactional
-	public void add(UserDetails user) {
+	public void add(Users user) {
 		// TODO Auto-generated method stub
-		userDao.add(user);
+		usersDao.add(user);
 		
 	}
 
 	@Override
 	@Transactional
-	public void edit(UserDetails user) {
+	public void edit(Users user) {
 		// TODO Auto-generated method stub
-		userDao.edit(user);
+		usersDao.edit(user);
 	}
 
 	@Override
 	@Transactional
-	public void delete(int userId) {
+	public void delete(int id) {
 		// TODO Auto-generated method stub
-		userDao.delete(userId);
+		usersDao.delete(id);
 	}
 
 	@Override
 	@Transactional
-	public UserDetails getUserDetails(int userId) {
+	public Users getUserDetails(int id) {
 		// TODO Auto-generated method stub
-		return userDao.getUserDetails(userId);
+		return usersDao.getUserDetails(id);
 	}
 
 	@Override
 	@Transactional
 	public List getAllUsers() {
 		// TODO Auto-generated method stub
-		return userDao.getAllUsers();
+		return usersDao.getAllUsers();
 	}
 
 }
