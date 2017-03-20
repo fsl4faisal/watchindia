@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="MOVIES")
@@ -16,20 +19,24 @@ public class Movies {
 	int id;
 	
 	@Column(name="NAME")
+	@NotEmpty
 	String name;
 	
 	@Column(name="YEAR_OF_RELEASE")
-	int yearOfRelease;
+	@NotNull
+	Integer yearOfRelease;
 	
 	@Column(name="DESCRIPTION")
+	@NotEmpty
 	String description;
 	
 	@Column(name="GENRE")
+	@NotEmpty
 	String genre;
 	
 	public Movies(){}
 
-	public Movies(int id, String name, int yearOfRelease, String description, String genre) {
+	public Movies(int id, String name, Integer yearOfRelease, String description, String genre) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -54,11 +61,11 @@ public class Movies {
 		this.name = name;
 	}
 
-	public int getYearOfRelease() {
+	public Integer getYearOfRelease() {
 		return yearOfRelease;
 	}
 
-	public void setYearOfRelease(int yearOfRelease) {
+	public void setYearOfRelease(Integer yearOfRelease) {
 		this.yearOfRelease = yearOfRelease;
 	}
 

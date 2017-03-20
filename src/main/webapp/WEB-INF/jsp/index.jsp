@@ -54,14 +54,14 @@
 						<td>${user.username}</td>
 						<td>${user.emailId}</td>
 						<td>${user.userType.name}</td>
-						<td><a href="user/edit?id=${user.id}">edit</a></td>
-						<td><a href="user/delete?id=${user.id}">delete</a></td>
+						<td><a href="user?id=${user.id}&edit">edit</a></td>
+						<td><a href="user?id=${user.id}&delete">delete</a></td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
 	</table>
-	<a href="user/registration?add">Add User</a>
+	<a href="user?add">Add User</a>
 
 
 	<h1>List of Movies</h1>
@@ -75,7 +75,7 @@
 			<th colspan="2">Action</th>
 		</tr>
 		<c:choose>
-			<c:when test="${empty movieList}">
+			<c:when test="${empty moviesList}">
 				<tr>
 					<td colspan="5" align="center">List Empty</td>
 				</tr>
@@ -87,8 +87,8 @@
 						<td>${movie.description}</td>
 						<td>${movie.genre}</td>
 						<td>${movie.yearOfRelease}</td>
-						<td><a href="#">edit</a></td>
-						<td><a href="#">delete</a></td>
+						<td><a href="movies?id=${movie.id}&edit">edit</a></td>
+						<td><a href="movies?id=${movie.id}&delete">delete</a></td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
@@ -97,7 +97,7 @@
 
 	</table>
 
-	<a href="#">Add Movie</a>
+	<a href="movies?add">Add Movie</a>
 
 	<h1>List of TV Series</h1>
 	<br />

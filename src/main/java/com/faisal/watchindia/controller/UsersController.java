@@ -26,7 +26,7 @@ public class UsersController {
 	@Autowired
 	private UsersService usersService;
 
-	@RequestMapping(value = { "user/registration" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/user" }, method = RequestMethod.GET,params="add")
 	public String setupRegistrationForm(Map<String, Object> map) {
 		System.out.println("Setting up form in /userRegistration");
 		Users users = new Users();
@@ -35,11 +35,11 @@ public class UsersController {
 		return "userRegistration";
 	}
 
-	@RequestMapping(value = { "user/registration" },method = RequestMethod.POST, params = "add")
+	@RequestMapping(value = { "/user" },method = RequestMethod.POST, params = "add")
 	public String addUserPost(@Valid Users users, BindingResult result, SessionStatus status, Map<String, Object> map) {
 		System.out.println("password from the view(post add):" + users.getPassword());
 		if (result.hasErrors()) {
-			System.out.println("it had errors" + result.getAllErrors());
+			map.put("action", "Register User");
 			map.put("users", users);
 			return "userRegistration";
 		} else {
@@ -49,7 +49,7 @@ public class UsersController {
 		}
 	}
 
-	@RequestMapping(value = { "user/edit" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/user" }, method = RequestMethod.GET,params="edit")
 	public String setupEditForm(@RequestParam("id") int id, Map<String, Object> map) {
 		System.out.println("Setting up form in /userRegistration");
 		map.put("users", usersService.getUserDetails(id));
@@ -57,11 +57,12 @@ public class UsersController {
 		return "userRegistration";
 	}
 
-	@RequestMapping(value = { "user/edit" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/user" }, method = RequestMethod.POST,params="edit")
 	public String updateUserPost(@RequestParam("id") int id, @Valid Users users, BindingResult result,
 			SessionStatus status, Map<String, Object> map) {
 		if (result.hasErrors()) {
 			System.out.println("it had errors" + result.getAllErrors());
+			map.put("action", "Edit User");
 			map.put("users", users);
 			return "userRegistration";
 		} else {
@@ -71,14 +72,14 @@ public class UsersController {
 		}
 	}
 	
-	@RequestMapping(value = { "user/delete" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/user" }, method = RequestMethod.GET,params="delete")
 	public String setupDeleteUserForm(@RequestParam("id") int id, Map<String, Object> map) {
 		map.put("users", usersService.getUserDetails(id));
 		map.put("action", "Delete User ?");
 		return "userRegistration";
 	}
 	
-	@RequestMapping(value = { "user/delete" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/user" }, method = RequestMethod.POST,params="delete")
 	public String deleteUserForm(@RequestParam("id") int id) {
 		usersService.delete(id);
 		return "redirect:/index";

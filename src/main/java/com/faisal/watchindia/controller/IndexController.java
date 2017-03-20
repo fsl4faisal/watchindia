@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.faisal.watchindia.domain.Movies;
+import com.faisal.watchindia.domain.TvSeries;
 import com.faisal.watchindia.domain.Users;
 import com.faisal.watchindia.service.MoviesService;
 import com.faisal.watchindia.service.TvSeriesService;
@@ -39,4 +41,19 @@ public class IndexController {
 		usersList=usersService.getAllUsers();
 		return usersList;
 	}
+	
+	@ModelAttribute("moviesList")
+	public List<Movies> getAllMovies(){
+		List<Movies> moviesList=new ArrayList<Movies>();
+		moviesList=moviesService.getAllMovies();
+		return moviesList;
+	}
+	
+	@ModelAttribute("tvSeriesList")
+	public List<TvSeries> getAllTvSeries(){
+		List<TvSeries> tvSeriesList=new ArrayList<TvSeries>();
+		tvSeriesList=tvSeriesService.getAllTvSeries();
+		return tvSeriesList;
+	}
+	
 }
