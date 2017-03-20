@@ -1,6 +1,5 @@
 package com.faisal.watchindia.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -11,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -22,40 +22,76 @@ import com.faisal.watchindia.service.UsersService;
 @Controller
 @SessionAttributes("userController")
 public class UsersController {
-	
+
 	@Autowired
 	private UsersService usersService;
-	
-	
-	@RequestMapping(value={"user/registration"},method=RequestMethod.GET)
-	public String setupForm(Map<String,Object> map){
+
+	@RequestMapping(value = { "user/registration" }, method = RequestMethod.GET)
+	public String setupRegistrationForm(Map<String, Object> map) {
 		System.out.println("Setting up form in /userRegistration");
-		map.put("users", new Users());
+		Users users = new Users();
+		map.put("users", users);
+		map.put("action", "Register User");
 		return "userRegistration";
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
-	public String addUser(@Valid Users users,BindingResult result,SessionStatus status,Map<String,Object> map){
-		if(result.hasErrors()){
-			System.out.println("it had errors"+result.getAllErrors());
+
+	@RequestMapping(value = { "user/registration" },method = RequestMethod.POST, params = "add")
+	public String addUserPost(@Valid Users users, BindingResult result, SessionStatus status, Map<String, Object> map) {
+		System.out.println("password from the view(post add):" + users.getPassword());
+		if (result.hasErrors()) {
+			System.out.println("it had errors" + result.getAllErrors());
 			map.put("users", users);
 			return "userRegistration";
-		}else{
+		} else {
 			System.out.println("processed successfully");
 			usersService.add(users);
 			return "redirect:/index";
-		}	
+		}
+	}
+
+	@RequestMapping(value = { "user/edit" }, method = RequestMethod.GET)
+	public String setupEditForm(@RequestParam("id") int id, Map<String, Object> map) {
+		System.out.println("Setting up form in /userRegistration");
+		map.put("users", usersService.getUserDetails(id));
+		map.put("action", "Edit User");
+		return "userRegistration";
+	}
+
+	@RequestMapping(value = { "user/edit" }, method = RequestMethod.POST)
+	public String updateUserPost(@RequestParam("id") int id, @Valid Users users, BindingResult result,
+			SessionStatus status, Map<String, Object> map) {
+		if (result.hasErrors()) {
+			System.out.println("it had errors" + result.getAllErrors());
+			map.put("users", users);
+			return "userRegistration";
+		} else {
+			System.out.println("processed successfully");
+			usersService.edit(users);
+			return "redirect:/index";
+		}
+	}
+	
+	@RequestMapping(value = { "user/delete" }, method = RequestMethod.GET)
+	public String setupDeleteUserForm(@RequestParam("id") int id, Map<String, Object> map) {
+		map.put("users", usersService.getUserDetails(id));
+		map.put("action", "Delete User ?");
+		return "userRegistration";
+	}
+	
+	@RequestMapping(value = { "user/delete" }, method = RequestMethod.POST)
+	public String deleteUserForm(@RequestParam("id") int id) {
+		usersService.delete(id);
+		return "redirect:/index";
 	}
 	
 	@ModelAttribute("enabledList")
-	public Enabled[] getEnabled(){
+	public Enabled[] getEnabled() {
 		return Enabled.values();
 	}
-	
+
 	@ModelAttribute("userTypes")
-	public UserType[] getUserTypes(){
+	public UserType[] getUserTypes() {
 		return UserType.values();
 	}
-	
-	
+
 }

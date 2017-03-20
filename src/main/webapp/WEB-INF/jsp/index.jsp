@@ -47,20 +47,21 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${usersList}" var="user">
+				
 					<tr>
 						<td>${user.firstName}</td>
 						<td>${user.lastName}</td>
 						<td>${user.username}</td>
 						<td>${user.emailId}</td>
 						<td>${user.userType.name}</td>
-						<td><a href="#"/>edit</td>
-						<td><a href="#"/>delete</td>
+						<td><a href="user/edit?id=${user.id}">edit</a></td>
+						<td><a href="user/delete?id=${user.id}">delete</a></td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
 	</table>
-	<a href="user/registration">Add User</a>
+	<a href="user/registration?add">Add User</a>
 
 
 	<h1>List of Movies</h1>

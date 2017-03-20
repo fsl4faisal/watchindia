@@ -12,5 +12,5 @@ public interface MoviesService {
 	void edit(Movies movie);
 	void delete(int movieId);
 	Movies getMovie(int movieId);
-	List getAllMovies();
+	List<Movies> getAllMovies();
 }

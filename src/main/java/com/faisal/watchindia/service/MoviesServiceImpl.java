@@ -44,7 +44,7 @@ public class MoviesServiceImpl implements MoviesService {
 
 	@Override
 	@Transactional
-	public List getAllMovies() {
+	public List<Movies> getAllMovies() {
 		// TODO Auto-generated method stub
 		return moviesDao.getAllMovies();
 	}

@@ -38,7 +38,7 @@ public class TvSeriesDaoImpl implements TvSeriesDao {
 	}
 
 	@Override
-	public List getAllTvSeries() {
+	public List<TvSeries> getAllTvSeries() {
 		return session.getCurrentSession().createQuery("from TvSeries").list();
 	}
 

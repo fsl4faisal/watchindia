@@ -20,16 +20,15 @@ import com.faisal.watchindia.constants.UserType;
 public class Users {
 	
 	@Id
-	@Column(name="USER_ID")
+	@Column(name="ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int userId;
+	private int id;
 	
 	@Column(name="USERNAME")
 	@NotEmpty(message="username can not be empty")
 	String username;
 	
 	@Column(name="PASSWORD")
-	@NotEmpty
 	String password;
 	
 	@Column(name="ENABLED")
@@ -57,10 +56,10 @@ public class Users {
 	public Users(){}
 
 
-	public Users(int userId, String username, String password, Integer enabled, String firstName, String lastName,
+	public Users(int id, String username, String password, Integer enabled, String firstName, String lastName,
 			String emailId, UserType userType) {
 		super();
-		this.userId = userId;
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
@@ -72,12 +71,12 @@ public class Users {
 
 
 
-	public int getUserId() {
-		return userId;
+	public int getId() {
+		return id;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUsername() {

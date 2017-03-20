@@ -12,5 +12,5 @@ public interface UsersService {
 	void edit(Users user);
 	void delete(int id);
 	Users getUserDetails(int id);
-	List getAllUsers();
+	List<Users> getAllUsers();
 }

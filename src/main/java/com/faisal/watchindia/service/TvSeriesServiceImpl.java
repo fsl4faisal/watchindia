@@ -46,7 +46,7 @@ public class TvSeriesServiceImpl implements TvSeriesService{
 
 	@Override
 	@Transactional
-	public List getAllTvSeries() {
+	public List<TvSeries> getAllTvSeries() {
 		// TODO Auto-generated method stub
 		return tvSeriesDao.getAllTvSeries();
 	}

@@ -24,7 +24,10 @@
 
 </head>
 <body>
+	<h1>${action}</h1>
 	<form:form method="POST" modelAttribute="users">
+	<form:hidden path="password" value="${users.firstName}"/>
+	
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 			<tr>
@@ -37,12 +40,6 @@
 				<th>Last Name</th>
 				<td><form:input path="lastName" /></td>
 				<td><form:errors path="lastName" cssClass="error" /></td>
-			</tr>
-
-			<tr>
-				<th>password</th>
-				<td><form:password path="password" /></td>
-				<td><form:errors path="password" cssClass="error" /></td>
 			</tr>
 
 			<tr>
@@ -60,9 +57,13 @@
 			<tr>
 				<th>User Type</th>
 				<td><form:select path="userType">
-						<option disabled selected></option>
 						<c:forEach items="${userTypes}" var="userType">
-							<option value="${userType}">${userType.name}</option>
+							<c:choose>
+								<c:when test="${users.userType eq userType.value}">
+									<option value="${userType.value}" selected>${userType.name}</option>
+								</c:when>
+							</c:choose>
+							<option value="${userType.value}">${userType.name}</option>
 						</c:forEach>
 					</form:select></td>
 				<td><form:errors path="userType" cssClass="error" /></td>
@@ -71,13 +72,18 @@
 			<tr>
 				<th>Enabled</th>
 				<td><form:select path="enabled">
-						<option disabled selected></option>
 						<c:forEach items="${enabledList}" var="enabledStatus">
+							<c:choose>
+								<c:when test="${users.enabled eq enabledStatus.value}">
+									<option value="${users.enabled}" selected>${enabledStatus.name}</option>
+								</c:when>
+							</c:choose>
 							<option value="${enabledStatus.value}">${enabledStatus.name}</option>
 						</c:forEach>
 					</form:select></td>
 				<td><form:errors path="enabled" cssClass="error" /></td>
 			</tr>
+
 			<tr>
 				<td colspan="2" align="center"><input type="submit"
 					value="Submit" /></td>

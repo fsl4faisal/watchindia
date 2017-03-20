@@ -37,7 +37,7 @@ public class MoviesDaoImpl implements MoviesDao {
 	}
 
 	@Override
-	public List getAllMovies() {
+	public List<Movies> getAllMovies() {
 		return session.getCurrentSession().createQuery("from Movies").list();
 	}
 

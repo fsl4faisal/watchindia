@@ -12,5 +12,5 @@ public interface TvSeriesService {
 	void edit(TvSeries tvSeries);
 	void delete(int tvSeriesId);
 	TvSeries getTvSeries(int tvSeriesId);
-	List getAllTvSeries();
+	List<TvSeries> getAllTvSeries();
 }
