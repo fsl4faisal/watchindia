@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.faisal.watchindia.domain.Movies;
+import com.faisal.watchindia.dto.Movies;
 
 @Service
 public interface MoviesService {
-	void add(Movies movie);
-	void edit(Movies movie);
-	void delete(int movieId);
-	Movies getMovie(int movieId);
+	void add(Movies movies);
+	void edit(Movies movies);
+	void delete(int moviesId);
+	Movies getMovies(int moviesId);
 	List<Movies> getAllMovies();
 }

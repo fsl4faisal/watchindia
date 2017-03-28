@@ -1,13 +1,13 @@
 package com.faisal.watchindia.constants;
 
 public enum Enabled {
-	TRUE("TRUE", 1), 
-	FALSE("FALSE",0);
+	TRUE("TRUE", true), 
+	FALSE("FALSE",false);
 	
 	String name;
-	Integer value;
+	Boolean value;
 
-	private Enabled(String name, Integer value) {
+	private Enabled(String name, Boolean value) {
 		this.name = name;
 		this.value = value;
 	}
@@ -20,11 +20,11 @@ public enum Enabled {
 		this.name = name;
 	}
 
-	public Integer getValue() {
+	public Boolean getValue() {
 		return value;
 	}
 
-	public void setValue(Integer value) {
+	public void setValue(Boolean value) {
 		this.value = value;
 	}
 	

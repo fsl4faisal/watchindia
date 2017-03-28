@@ -27,12 +27,12 @@ public class MoviesDaoImpl implements MoviesDao {
 
 	@Override
 	public void delete(int movieId) {
-		session.getCurrentSession().delete(getMovie(movieId));
+		session.getCurrentSession().delete(getMovies(movieId));
 		
 	}
 
 	@Override
-	public Movies getMovie(int movieId) {
+	public Movies getMovies(int movieId) {
 		return (Movies)session.getCurrentSession().get(Movies.class,movieId);
 	}
 

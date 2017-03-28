@@ -1,3 +1,4 @@
+
 package com.faisal.watchindia.domain;
 
 import javax.persistence.Column;
@@ -8,38 +9,27 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="TV_SERIES")
+@Table(name="tv_series")
 public class TvSeries {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID")
+	@Column(name="id")
 	int id;
 	
-	@Column(name="NAME")
+	@Column(name="name")
 	String name;
 	
-	@Column(name="SEASON")
-	int season;
+	@Column(name="season")
+	Integer season;
 	
-	@Column(name="EPISODE")
-	int episode;
+	@Column(name="episode")
+	Integer episode;
 	
-	@Column(name="DESCRIPTION")
+	@Column(name="description")
 	String description;
 	
 	public TvSeries(){}
-
-	public TvSeries(int id, String name, int season, int episode, String description) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.season = season;
-		this.episode = episode;
-		this.description = description;
-	}
-
-
 
 	public int getId() {
 		return id;
@@ -57,19 +47,19 @@ public class TvSeries {
 		this.name = name;
 	}
 
-	public int getSeason() {
+	public Integer getSeason() {
 		return season;
 	}
 
-	public void setSeason(int season) {
+	public void setSeason(Integer season) {
 		this.season = season;
 	}
 
-	public int getEpisode() {
+	public Integer getEpisode() {
 		return episode;
 	}
 
-	public void setEpisode(int episode) {
+	public void setEpisode(Integer episode) {
 		this.episode = episode;
 	}
 

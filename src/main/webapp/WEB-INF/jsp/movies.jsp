@@ -24,6 +24,8 @@
 
 </head>
 <body>
+	<%@ include file="/WEB-INF/jsp/security.jsp"%>
+	
 	<h1>${action}</h1>
 
 	<form:form method="post" modelAttribute="movies">

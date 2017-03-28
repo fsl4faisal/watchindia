@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.faisal.watchindia.domain.TvSeries;
+import com.faisal.watchindia.dto.TvSeries;
 
 @Service
 public interface TvSeriesService {

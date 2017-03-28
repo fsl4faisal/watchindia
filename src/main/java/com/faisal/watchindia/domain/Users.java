@@ -8,68 +8,45 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 import com.faisal.watchindia.constants.UserType;
 
 @Entity
-@Table(name="USERS")
+@Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
 public class Users {
-	
+
 	@Id
-	@Column(name="ID")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	int id;
+
+	@Column(name = "username", nullable = false, unique = true)
+	private String username;
+
+	@Column(name = "password", nullable = false)
+	private String password;
+
+	@Column(name = "enabled", nullable = false)
+	private Boolean enabled;
+
+	@Column(name = "first_name")
+	private String firstName;
+
+	@Column(name = "last_name")
+	private String lastName;
+
+	@Column(name = "email_id")
+	private String emailId;
 	
-	@Column(name="USERNAME")
-	@NotEmpty(message="username can not be empty")
-	String username;
-	
-	@Column(name="PASSWORD")
-	String password;
-	
-	@Column(name="ENABLED")
-	@NotNull
-	Integer enabled;
-	
-	@Column(name="FIRST_NAME")
-	@NotEmpty
-	String firstName;
-	
-	@Column(name="LAST_NAME")
-	@NotEmpty
-	String lastName;
-	
-	@Column(name="EMAIL_ID")
-	@NotEmpty
-	@Pattern(regexp=".+@.+\\.[a-z]+")
-	String emailId;
-	
-	@Column(name="USER_TYPE")
-	@NotNull
+	@Column(name = "role")
+	@NotNull(message="Role can not be left Empty")
 	@Enumerated(EnumType.STRING)
-	UserType userType;
-	
-	public Users(){}
+	private UserType role;
 
-
-	public Users(int id, String username, String password, Integer enabled, String firstName, String lastName,
-			String emailId, UserType userType) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.enabled = enabled;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.emailId = emailId;
-		this.userType = userType;
+	public Users() {
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -95,19 +72,13 @@ public class Users {
 		this.password = password;
 	}
 
-	
-
-	public Integer getEnabled() {
+	public Boolean getEnabled() {
 		return enabled;
 	}
 
-
-
-	public void setEnabled(Integer enabled) {
+	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
-
-
 
 	public String getFirstName() {
 		return firstName;
@@ -133,16 +104,13 @@ public class Users {
 		this.emailId = emailId;
 	}
 
-	public UserType getUserType() {
-		return userType;
+	public UserType getRole() {
+		return role;
 	}
 
-	public void setUserType(UserType userType) {
-		this.userType = userType;
+	public void setRole(UserType role) {
+		this.role = role;
 	}
 
-
-	
-	
 	
 }

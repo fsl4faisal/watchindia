@@ -8,9 +8,9 @@ import com.faisal.watchindia.domain.Movies;
 
 @Repository
 public interface MoviesDao {
-	void add(Movies movie);
-	void edit(Movies movie);
+	void add(Movies movies);
+	void edit(Movies movies);
 	void delete(int movieId);
-	Movies getMovie(int movieId);
+	Movies getMovies(int movieId);
 	List<Movies> getAllMovies();
 }

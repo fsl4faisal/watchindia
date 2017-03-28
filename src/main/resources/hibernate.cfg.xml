@@ -11,7 +11,6 @@
 		<property name="hbm2ddl.auto">create</property>
 		
 		<mapping class="com.faisal.watchindia.domain.Users" />
-		<mapping class="com.faisal.watchindia.domain.Authorities" />
 		<mapping class="com.faisal.watchindia.domain.Movies" />
 		<mapping class="com.faisal.watchindia.domain.TvSeries" />
 	</session-factory>

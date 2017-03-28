@@ -6,32 +6,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name="MOVIES")
+@Table(name="movies")
 public class Movies {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID")
+	@Column(name="id")
 	int id;
 	
-	@Column(name="NAME")
-	@NotEmpty
+	@Column(name="name")
 	String name;
 	
-	@Column(name="YEAR_OF_RELEASE")
-	@NotNull
+	@Column(name="year_of_release")
 	Integer yearOfRelease;
-	
-	@Column(name="DESCRIPTION")
-	@NotEmpty
+
+	@Column(name="description")
 	String description;
 	
-	@Column(name="GENRE")
-	@NotEmpty
+	@Column(name="genre")
 	String genre;
 	
 	public Movies(){}
